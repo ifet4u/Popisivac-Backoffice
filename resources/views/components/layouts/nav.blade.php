@@ -70,12 +70,12 @@
                 </a>
                 <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="/test" >
-                            <i class="bi bi-circle"></i><span>Test</span>
+                        <a href="{{route('artikli')}}" >
+                            <i class="bi bi-circle"></i><span>Artikli</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="/test">
                             <i class="bi bi-circle"></i><span>Test #2</span>
                         </a>
                     </li>

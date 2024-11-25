@@ -85,9 +85,10 @@ class Popis extends Component
                                 ->first();
         if ($this->artikal){
             $this->noviArtikal = false;
-            $this->noviNaziv = $this->artikal->naziv;
+            $this->noviNaziv = preslovi($this->artikal->naziv);
             $this->noviBarcode = $this->artikal->barcode;
             $this->dispatch('fokus-kolicina');
+
         } else{
             $this->noviArtikal = true;
             $this->noviBarcode = $this->barkod;
@@ -118,6 +119,7 @@ class Popis extends Component
     }
     public function render()
     {
+
         if($this->magacin && !$this->popisi){
             $this->popisi = PopisModel::with('magacini')
                 ->where('magacin',$this->magacin->id)

@@ -54,7 +54,7 @@ class DB
     }
 
     /**
-     * Execute a query and return results.
+     * Execute a query and return results with proper encoding.
      *
      * @param string $sql
      * @param array $params
@@ -67,6 +67,31 @@ class DB
         $stmt = $instance->db->prepare($sql);
         $stmt->execute($params);
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // Fetch data
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Normalize encoding
+        return array_map(function ($row) {
+            return self::normalizeEncoding($row);
+        }, $results);
+    }
+
+    /**
+     * Normalize encoding of array values to UTF-8.
+     *
+     * @param array $data
+     * @return array
+     */
+    private static function normalizeEncoding(array $data) // skripta za enkodovanje, resava problem sa losim karakterima drugacijeg enkodovanja
+    {
+        return array_map(function ($value) {
+            if (is_string($value)) {
+                // Attempt to convert encoding to UTF-8
+                if (!mb_check_encoding($value, 'UTF-8')) {
+                    return mb_convert_encoding($value, 'UTF-8', 'ISO-8859-1'); // Adjust source encoding as needed
+                }
+            }
+            return $value;
+        }, $data);
     }
 }

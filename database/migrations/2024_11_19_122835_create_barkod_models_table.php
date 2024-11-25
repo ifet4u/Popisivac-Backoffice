@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('barkod', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_artikal');
+            $table->integer('id_artikal');
             $table->text('barcode');
             //$table->timestamps();
 
-            $table->foreign('id_artikal')->references('id')->on('artikli')->onDelete('cascade');
+//            $table->foreign('id_artikal')->references('id')->on('artikli')->onDelete('cascade');
         });
     }
 

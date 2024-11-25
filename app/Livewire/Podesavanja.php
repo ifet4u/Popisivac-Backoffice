@@ -3,13 +3,14 @@
 namespace App\Livewire;
 
 use App\Models\PodesavanjaModel;
+use Illuminate\Support\Facades\Artisan;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class Podesavanja extends Component
 {
     public $podesavanja;
-    #[Validate('required|min:3')]
+    #[Validate('required|min:1')]
     public $firma;
     #[Validate('required|min:3')]
     public $drajver;
@@ -17,6 +18,7 @@ class Podesavanja extends Component
     public $putanja;
     public $email;
     public $zvuk;
+    public $napredne = null;
 
     public function snimi()
     {
@@ -29,6 +31,14 @@ class Podesavanja extends Component
         $this->podesavanja->save();
 
         alert('Podaci su snimljeni');
+    }
+    public function obrisiSve()
+    {
+        Artisan::call('migrate:fresh');
+        Artisan::call('db:seed');
+        Artisan::call('cache:clear');
+
+        alert('Podaci su obrisan','danger');
     }
     public function render()
     {

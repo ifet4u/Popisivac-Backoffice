@@ -53,7 +53,6 @@ class Sync extends Component
             ['naziv','broj','adresa','grad']
         );
 
-
         $this->uspesno = true;
 
     }

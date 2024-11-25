@@ -11,5 +11,6 @@ Route::get('/popis/{id}',\App\Livewire\Operacije\Popis::class);
 
 Route::get('/preuzmipopis/{id}',[\App\Http\Controllers\PopisIzvoz::class,'izvozCsv']);
 Route::get('/emailpopis/{id}',[\App\Http\Controllers\PopisIzvoz::class,'izvozMail']);
+Route::get('/artikli',\App\Livewire\Sifarnik\Artikli::class)->name('artikli');
 
 Route::view('/test','test');
