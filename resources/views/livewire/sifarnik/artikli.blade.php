@@ -15,15 +15,16 @@
             <div class="col-lg-6 col-sm-12  ">
 
                 <div class="card ">
+
                     <div class="card-body  ">
+                        <h1>Sifarnik Artikala</h1>
                         @if($artikli)
                             <table class="table table-sm table-striped">
                                 <thead>
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Naziv</th>
-                                    <th scope="col">Kolicina</th>
-                                    <th scope="col"></th>
+                                    <th scope="text-end">Cena</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -34,10 +35,7 @@
                                         <td>
                                             {{$art->naziv}} <br>
                                             <span class=" text-secondary">{{$art->barcode}}</span></td>
-                                        <td>{{$art->kolicina}}</td>
-                                        <td>
-
-                                        </td>
+                                        <td class="text-end">{{br($art->cena)}}</td>
                                     </tr>
                                 @endforeach
 

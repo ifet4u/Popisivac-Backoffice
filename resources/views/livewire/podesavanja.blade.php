@@ -34,29 +34,25 @@
                             </div>
                             <div class="col-12">
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" @checked($zvuk) wire:model="zvuk">
+                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
+                                           @checked($zvuk) wire:model="zvuk">
                                     <label class="form-check-label" for="flexSwitchCheckChecked">Zvuk</label>
                                 </div>
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" @checked($napredne) wire:model.live="napredne">
+                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
+                                           @checked($napredne) wire:model.live="napredne">
                                     <label class="form-check-label" for="flexSwitchCheckChecked">Napredne Opcije</label>
                                 </div>
                             </div>
 
                             <div class="text-end">
-                                <button type="submit" class="btn btn-primary" ><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" wire:loading></span>
+                                <button type="submit" class="btn btn-primary"><span
+                                        class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                                        wire:loading></span>
                                     Snimi
                                 </button>
                             </div>
                         </form><!-- Vertical Form -->
-                        <div class="col-12">
-                            @if($napredne)
-                                <button class="btn btn-danger" wire:click="obrisiSve" wire:confirm="Da li zelite da obrisete sve podatke ?">
-                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" wire:loading></span>
-                                    Obrisi Sve</button>
-                            @endif
-
-                        </div>
                     </div>
                 </div>
 
@@ -67,7 +63,19 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Dodatni Parametri</h5>
-                        <p><livewire:import.sync/></p>
+                        <p>
+                            <livewire:import.sync/>
+                        </p>
+                        @if($napredne)
+                            <p>
+                                <button class="btn btn-danger" wire:click="obrisiSve"
+                                        wire:confirm="Da li zelite da obrisete sve podatke ?">
+                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                                          wire:loading></span>
+                                    Obrisi Sve
+                                </button>
+                            </p>
+                        @endif
                     </div>
                 </div>
 
