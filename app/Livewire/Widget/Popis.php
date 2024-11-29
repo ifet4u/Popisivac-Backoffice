@@ -30,7 +30,7 @@ class Popis extends Component
     public function ucitajPopis()
     {
 
-        $this->redirect('/popis/'.$this->popis->id, navigate: true);
+        $this->redirect('/popis/'.$this->popis->id);
     }
 
     public function posaljiMail(PopisIzvoz $popis)

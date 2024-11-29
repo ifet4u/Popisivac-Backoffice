@@ -92,7 +92,9 @@
                                     <span class="input-group-text" id="basic-addon1"><i
                                             class="bi bi-file-font"></i></span>
                                     <input type="text" class="form-control" id="noviNaziv"
-                                           wire:model="noviNaziv" @disabled(!$noviArtikal)>
+                                           wire:model="noviNaziv" @disabled(!$noviArtikal)
+                                           x-on:keydown.enter="document.getElementById('kolicina').focus()"
+                                    >
 
                                 </div>
                                 @error('noviNaziv')

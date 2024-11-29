@@ -1,7 +1,7 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-        <a href="/" class="logo d-flex align-items-center" wire:navigate>
+        <a href="/" class="logo d-flex align-items-center" >
             <img src="{{asset('assets/img/logo.png')}}" alt="">
             <span class="d-none d-lg-block">Popisivac</span>
         </a>
@@ -38,7 +38,7 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="{{route('podesavanja')}}" wire:navigate>
+                        <a class="dropdown-item d-flex align-items-center" href="{{route('podesavanja')}}" >
                             <i class="bi bi-gear"></i>
                             <span>Podesavanja</span>
                         </a>
@@ -48,18 +48,18 @@
 
         </ul>
     </nav><!-- End Icons Navigation -->
-    <aside id="sidebar" class="sidebar">
+    <aside id="sidebar" class="sidebar" >
 
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{route('home')}}" wire:navigate>
+                <a class="nav-link collapsed" href="{{route('home')}}" >
                     <i class="bi bi-clipboard-data"></i>
                     <span>Dashboard</span>
                 </a>
             </li><!-- End Dashboard Nav -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{route('popis')}}" wire:navigate>
+                <a class="nav-link collapsed" href="{{route('popis')}}" >
                     <i class="bi bi-upc-scan"></i>
                     <span>Popis</span>
                 </a>
