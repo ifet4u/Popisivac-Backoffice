@@ -2,15 +2,17 @@
 
     <div class="pagetitle">
         @if($popis)
-            <h1>{{'Popis '.$popis->broj }} - {{$popis->naziv ?? ''}} <button @click="
+            <h1>{{'Popis '.$popis->broj }} - {{$popis->naziv ?? ''}}
+                <button @click="
                                                 let unos = prompt('Unesite naziv Popisa');
                                                 if (unos) {
                                                     $dispatch('updateNazivPopisa',{ naziv:unos}); // Emitovanje događaja ka Livewire-u
                                                 }
                                             "
-                                                                              CLASS="btn btn-sm ">
+                        CLASS="btn btn-sm ">
                     {!! ($popis->naziv) ? '<i class="bi bi-pencil-square"></i>' : '<span class="text-danger">Dodaj Naziv</span>'!!}
-                </button></h1>
+                </button>
+            </h1>
         @else
             <h1>Popis</h1>
         @endif
@@ -58,37 +60,41 @@
 
             <!-- Popisivanje  -->
             @if($popis && $magacin)
-                <div class="col-lg-6 col-sm-12 m-0 p-0">
-
+                <div class="col-lg-3 col-md-6 col-sm-12 m-0 p-0">
                     <div class="card ">
                         <div class="card-body">
-                            <form id="skener" wire:submit.prevent="skeniraj" class="pt-3">
-                                <div class="input-group mb-3 ">
-                                    <input type="number" class="form-control w-75" placeholder="BAR KOD / ID" id="barkod"
-                                           wire:model="barkod">
-                                    <button class="btn btn-outline-danger w-25" type="submit"><i
-                                            class="bi bi-upc-scan"></i>
+                            @if($traziNaziv)
+                                <x-form.pretraganaziv :$pretraga :$rezultatiPretrage/>
+                            @else
+                                <x-form.pretragabarkod />
+                            @endif
 
-                                    </button>
-                                </div>
-                                @error('barkod')
-                                <div class="text-danger">
-                                    {{$message}}
-                                </div>
-                                @enderror
-                            </form>
-                            <div class="mb-3">
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-tags"></i></span>
+                            <div class="mb-2">
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text" id="basic-addon1">ID</span>
                                     <input type="text" class="form-control" value="{{$artikal->id ?? ''}}" disabled>
                                 </div>
-                                <div class="input-group mb-3">
+
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="input-group mb-2">
                                     <span class="input-group-text" id="basic-addon1"><i
                                             class="ri-barcode-fill"></i></span>
-                                    <input type="text" class="form-control"
-                                           wire:model="noviBarcode" @disabled(!$noviArtikal)>
+                                            <input type="text" class="form-control"
+                                                   wire:model="noviBarcode" @disabled(!$noviArtikal)>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="input-group mb-2">
+                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-tags"></i></span>
+                                            <input type="text" class="form-control"
+                                                   wire:model="cena" disabled>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="input-group mb-3">
+
+                                <div class="input-group mb-2">
                                     <span class="input-group-text" id="basic-addon1"><i
                                             class="bi bi-file-font"></i></span>
                                     <input type="text" class="form-control" id="noviNaziv"
@@ -102,7 +108,7 @@
                                 @enderror
                             </div>
                             <form id="dodaj" wire:submit.prevent="dodaj">
-                                <div class="mb-3">
+                                <div class="mb-2">
                                     <input type="number" id="kolicina" class="form-control w-100"
                                            placeholder="Kolicina"
                                            x-data

@@ -16,7 +16,11 @@ class Popis extends Component
 {
     public $magacini;
     public $popisi;
-
+    #[Session]
+    public $traziNaziv = false;
+    #[Validate('required',message: 'Unesi termin za pretragu')]
+    public $pretraga;
+    public $rezultatiPretrage;
     #[Session]  // problemi sa sesijama. Proveri o cemu se radi
     public $popis;
     #[Session]
@@ -30,8 +34,10 @@ class Popis extends Component
     #[Validate('required',message:'Naziv je obavezan')]
     public $noviNaziv ;
     public $noviBarcode;
+    public $cena;
     public function mount($id = null)
     {
+
         if($id){
             $this->popis = PopisModel::find($id);
             $this->magacin = MagacinModel::find($this->popis->magacin);
@@ -40,6 +46,7 @@ class Popis extends Component
         $this->magacini = MagacinModel::get();
 
     }
+
     public function odaberiMagacin($id)
     {
         $this->magacin = MagacinModel::find($id);
@@ -77,6 +84,11 @@ class Popis extends Component
       }
 
     }
+    public function promeniPretragu() // trazi po barkodu ili po nazivu
+    {
+        $this->traziNaziv = ($this->traziNaziv) ? false : true;
+        $this->reset('artikal','kolicina','barkod','noviNaziv','noviBarcode','cena','pretraga');
+    }
     public function skeniraj()
     {
         $this->validateOnly('barkod');
@@ -87,6 +99,7 @@ class Popis extends Component
             $this->noviArtikal = false;
             $this->noviNaziv = preslovi($this->artikal->naziv);
             $this->noviBarcode = $this->artikal->barcode;
+            $this->cena = br($this->artikal->cena);
             $this->dispatch('fokus-kolicina');
 
         } else{
@@ -96,9 +109,34 @@ class Popis extends Component
             $this->dispatch('novi-artikal');
         }
     }
+    public function pretrazi()
+    {
+
+        $this->validateOnly('pretraga');
+
+        $this->rezultatiPretrage = ArtikliModel::where('naziv','like','%'.$this->pretraga.'%')
+                                                ->orWhere('barcode','like','%'.$this->pretraga)
+                                                ->get();
+//        dump($this->rezultatiPretrage);
+        $this->dispatch('otvori-modal');
+    }
+    public function odaberiArtikal($id)
+    {
+        //dd($id);
+        $this->artikal = ArtikliModel::findorfail($id);
+
+            $this->noviArtikal = false;
+            $this->noviNaziv = preslovi($this->artikal->naziv);
+            $this->noviBarcode = $this->artikal->barcode;
+            $this->cena = br($this->artikal->cena);
+            $this->dispatch('fokus-kolicina');
+
+    }
     public function dodaj()
     {
-        $this->validate();
+        $this->validateOnly('noviBarcode');
+        $this->validateOnly('noviNaziv');
+        $this->validateOnly('kolicina');
         $art = PopisDetaljiModel::create([
             'id_popis' => $this->popis->id,
             'barcode' => $this->noviBarcode,
@@ -108,7 +146,7 @@ class Popis extends Component
             'st'=>$this->artikal->ps ?? null
         ]);
         $this->dispatch('artikal-unesen');
-        $this->reset('artikal','kolicina','barkod','noviNaziv','noviBarcode');
+        $this->reset('artikal','kolicina','barkod','noviNaziv','noviBarcode','cena','pretraga');
 
     }
     #[On('updateNazivPopisa')]
