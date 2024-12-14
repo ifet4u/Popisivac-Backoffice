@@ -2,6 +2,8 @@
     <div class="input-group mb-2 ">
         <input type="number" class="form-control w-50 text-danger" placeholder="BAR KOD / ID"
                id="barkod"
+               @click="$wire.barkod = ''"
+               autocomplete="off"
                wire:model="barkod">
         <button class="btn btn-outline-danger w-25" type="submit">
             <i class="bi bi-upc-scan"></i>

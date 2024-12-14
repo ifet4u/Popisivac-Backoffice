@@ -31,7 +31,7 @@
         </nav>
     </div><!-- End Page Title -->
 
-    <section class="section dashboard ">
+    <section class="section ">
         <div class="row">
             <!-- Odabir Magacina -->
             @if(!$magacin)
@@ -60,7 +60,7 @@
 
             <!-- Popisivanje  -->
             @if($popis && $magacin)
-                <div class="col-lg-3 col-md-6 col-sm-12 m-0 p-0">
+                <div class="col-lg-4 col-md-6 col-sm-12 m-sm-0 p-sm-0 m-md-2 p-md-2">
                     <div class="card ">
                         <div class="card-body">
                             @if($traziNaziv)
@@ -120,7 +120,7 @@
                                     @enderror
                                 </div>
                                 <div>
-                                    <button class="btn btn-lg btn-danger w-100">Dodaj</button>
+                                    <button class="btn btn-lg btn-danger w-100" wire:loading.attr="disabled">Dodaj</button>
                                 </div>
                             </form>
                         </div>

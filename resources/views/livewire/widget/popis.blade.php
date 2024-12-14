@@ -32,15 +32,15 @@
                             <h5 class="modal-title">Popis br.{{$popis->broj}}</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body row mx-auto m-1 p-1">
-                            <button class="btn btn-primary col-md-3 col-sm-12 my-1 mx-1" x-on:click="$wire.ucitajPopis">
-                                Nastavi Popis
+                        <div class="modal-body row ">
+                            <button class="btn btn-primary col" x-on:click="$wire.ucitajPopis">
+                                <i class="bi bi-boxes"></i> Nastavi Popis
                             </button>
-                            <button class="btn btn-success col-md-3 col-sm-12 my-1 mx-1" x-on:click="$wire.preuzmi">
-                                Preuzmi TXT
+                            <button class="btn btn-success col" x-on:click="$wire.preuzmi">
+                                <i class="bi bi-card-text"></i> Preuzmi TXT
                             </button>
-                            <button class="btn btn-warning col-md-3 col-sm-12 my-1 mx-1" x-on:click="$wire.posaljiMail">
-                                Posalji email
+                            <button class="btn btn-warning col" x-on:click="$wire.posaljiMail">
+                                <i class="bi bi-envelope-at"></i>  Posalji email
                             </button>
                         </div>
                     </div>

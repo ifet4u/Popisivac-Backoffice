@@ -6,6 +6,8 @@
     <div class="input-group mb-2">
         <input type="text" class="form-control w-50 text-primary " placeholder="NAZIV"
                id="barkod"
+               @click="$wire.pretraga = ''"
+               autocomplete="off"
                wire:model="pretraga">
         <button class="btn btn-outline-primary w-25" type="submit">
             <i class="bi bi-search"></i>

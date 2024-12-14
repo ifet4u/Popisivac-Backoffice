@@ -1,7 +1,7 @@
-<div class="col-lg-6 col-sm-12 m-0 p-0">
+<div class="col-lg-7 col-md-6 col-sm-12 m-sm-0 p-sm-0 m-md-2 p-md-2">
 
     <div class="card ">
-        <div class="card-body m-0 p-1">
+        <div class="card-body m-sm-0 p-sm-1 ">
             @if($lista)
                 <table class="table table-sm table-striped">
                     <thead>

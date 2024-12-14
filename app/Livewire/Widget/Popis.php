@@ -32,7 +32,10 @@ class Popis extends Component
 
         $this->redirect('/popis/'.$this->popis->id);
     }
-
+    public function obrisiPopis()
+    {
+        dump('resi brisanje popisa');
+    }
     public function posaljiMail(PopisIzvoz $popis)
     {
         $mail = $popis->izvozMail($this->id);
