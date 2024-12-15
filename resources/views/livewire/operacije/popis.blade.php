@@ -1,4 +1,4 @@
-<main id="main" class="main">
+<main id="main" class="main p-lg-4 p-md-2 p-sm-2">
 
     <div class="pagetitle">
         @if($popis)
@@ -32,7 +32,7 @@
     </div><!-- End Page Title -->
 
     <section class="section ">
-        <div class="row">
+        <div class="row ">
             <!-- Odabir Magacina -->
             @if(!$magacin)
                 @foreach($magacini as $mag)
@@ -62,7 +62,7 @@
             @if($popis && $magacin)
                 <div class="col-lg-4 col-md-6 col-sm-12 m-sm-0 p-sm-0 m-md-2 p-md-2">
                     <div class="card ">
-                        <div class="card-body">
+                        <div class="card-body ">
                             @if($traziNaziv)
                                 <x-form.pretraganaziv :$pretraga :$rezultatiPretrage/>
                             @else

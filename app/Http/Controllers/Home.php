@@ -14,7 +14,7 @@ class Home extends Controller
         $lista = PopisModel::get();
 
         return view('dashboard',[
-            'firma' => $firma->firma,
+            'firma' => $firma->firma ?? config('app.name'),
             'listapopisa' => $lista
         ]);
     }

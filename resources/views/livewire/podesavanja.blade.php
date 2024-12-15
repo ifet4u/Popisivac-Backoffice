@@ -25,6 +25,8 @@
                             </div>
                             <div class="col-12">
                                 <x-form.input label="Drajver" naziv="drajver"/>
+                                <button type="button" class="btn btn-sm btn-outline-info mt-1" @click="$wire.drajver='Microsoft Access Driver (*.mdb, *.accdb)'">Drajver 1</button>
+                                <button type="button" class="btn btn-sm btn-outline-info mt-1" @click="$wire.drajver='Microsoft Access Driver (*.mdb)'">Drajver 2</button>
                             </div>
                             <div class="col-12">
                                 <x-form.input label="Putanja" naziv="putanja"/>
