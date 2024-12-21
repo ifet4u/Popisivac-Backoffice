@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barkod Skener</title>
-    <script src="{{asset('assets/qrscanner.js')}}"></script>
+    <script src="{{asset('/assets/qrscanner.js')}}"></script>
 
 </head>
 <body>
